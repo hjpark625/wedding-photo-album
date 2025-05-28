@@ -5,7 +5,8 @@ const config = {
   useTabs: false,
   semi: true,
   trailingComma: 'none',
-  singleQuote: true
+  singleQuote: true,
+  plugins: ['prettier-plugin-tailwindcss']
 };
 
 module.exports = config;
