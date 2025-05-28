@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @use 'reset-css/sass/reset';
+
+body {
+  min-height: 100dvh;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+}
