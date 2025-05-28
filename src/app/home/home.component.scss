@@ -1,0 +1,25 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  background-color: #f0f0f0;
+
+  // TODO: 사진 정해지면 그때 다시 백그라운드 스타일링 작업하기
+  //   &.first {
+  //     background: url('/first-photo.jpeg') no-repeat;
+  //     background-size: cover;
+  //     background-position: center center;
+  //   }
+
+  //   &.fourth {
+  //     background: url('/last-photo.jpeg') no-repeat;
+  //     background-size: cover;
+  //     background-position: center center;
+  //   }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
+}
