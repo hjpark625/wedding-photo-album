@@ -54,6 +54,7 @@
         "serve": {
           "options": {
             "port": 3000,
+            "proxyConfig": "./proxy.conf.json",
             "hmr": true
           },
           "builder": "@angular-devkit/build-angular:dev-server",
