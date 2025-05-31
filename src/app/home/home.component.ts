@@ -9,19 +9,24 @@ import type { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent {
   private photoRequestService = inject(PhotoRequestService);
+  private formData = new FormData();
 
   saveAttachImages(event: Event) {
     if (event.target instanceof HTMLInputElement) {
       const target = event.target;
+      console.log(target);
       const files = Array.from(target.files || []);
-      this.uploadPhotos(files);
+      if (files.length === 0) return;
+
+      files.forEach((file) => {
+        this.formData.append('images', file);
+      });
+      this.uploadPhotos();
     }
   }
 
-  uploadPhotos(images: File[]) {
-    if (images.length === 0) return;
-
-    this.photoRequestService.uploadPhotos(images).subscribe({
+  uploadPhotos() {
+    this.photoRequestService.uploadPhotos(this.formData).subscribe({
       next: (response) => {
         console.log('Upload successful:', response.imageUrls);
       },

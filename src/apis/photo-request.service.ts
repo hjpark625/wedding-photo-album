@@ -11,13 +11,7 @@ export class PhotoRequestService {
   private http = inject(HttpClient);
   private readonly apiUrl = environment.API_SERVER;
 
-  uploadPhotos(photos: File[]) {
-    const formData = new FormData();
-
-    photos.forEach((photo) => {
-      formData.append('images', photo);
-    });
-
+  uploadPhotos(formData: FormData) {
     return this.http.post<UploadImagesResponse>(`${this.apiUrl}image/upload`, formData);
   }
 }
