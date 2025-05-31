@@ -9,23 +9,23 @@ import type { HttpErrorResponse } from '@angular/common/http';
 })
 export class HomeComponent {
   private photoRequestService = inject(PhotoRequestService);
-  private formData = new FormData();
 
   saveAttachImages(event: Event) {
+    const formData = new FormData();
     if (event.target instanceof HTMLInputElement) {
       const target = event.target;
       const files = Array.from(target.files || []);
       if (files.length === 0) return;
 
       files.forEach((file) => {
-        this.formData.append('images', file);
+        formData.append('images', file);
       });
-      this.uploadPhotos();
+      this.uploadPhotos(formData);
     }
   }
 
-  uploadPhotos() {
-    this.photoRequestService.uploadPhotos(this.formData).subscribe({
+  uploadPhotos(formData: FormData) {
+    this.photoRequestService.uploadPhotos(formData).subscribe({
       // TODO: 응답 및 에러에 관련된 핸들링 추가 필요
       next: (response) => {
         console.log('Upload successful:', response.imageUrls);
