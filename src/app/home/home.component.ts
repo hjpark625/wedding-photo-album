@@ -14,7 +14,6 @@ export class HomeComponent {
   saveAttachImages(event: Event) {
     if (event.target instanceof HTMLInputElement) {
       const target = event.target;
-      console.log(target);
       const files = Array.from(target.files || []);
       if (files.length === 0) return;
 
@@ -27,6 +26,7 @@ export class HomeComponent {
 
   uploadPhotos() {
     this.photoRequestService.uploadPhotos(this.formData).subscribe({
+      // TODO: 응답 및 에러에 관련된 핸들링 추가 필요
       next: (response) => {
         console.log('Upload successful:', response.imageUrls);
       },
