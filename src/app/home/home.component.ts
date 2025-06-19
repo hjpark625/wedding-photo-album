@@ -4,12 +4,13 @@ import { PhotoRequestService } from '@/apis/photo-request.service';
 import { AuthRequestService } from '@/apis/auth-request.service';
 
 import { FirstSectionComponent } from '@/app/first-section/first-section.component';
+import { SecondSectionComponent } from '@/app/second-section/second-section.component';
 
 import type { HttpErrorResponse } from '@angular/common/http';
 import type { OnInit } from '@angular/core';
 
 @Component({
-  imports: [FirstSectionComponent],
+  imports: [FirstSectionComponent, SecondSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
