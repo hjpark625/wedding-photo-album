@@ -6,38 +6,63 @@
   height: 100dvh;
   background-color: #f0f0f0;
 
-  // TODO: 사진 정해지면 그때 다시 백그라운드 스타일링 작업하기
-  //   &.first {
-  //     background: url('/first-photo.jpeg') no-repeat;
-  //     background-size: cover;
-  //     background-position: center center;
-  //   }
+  // "https://wedding-photos.hjpark625.site/images/6867199c-d6f3-42ac-86e2-3f5deaedfea7.jpeg",
+  // "https://wedding-photos.hjpark625.site/images/bdd562d4-56ae-41a1-812c-1740f5ad3a4a.jpeg",
+  // "https://wedding-photos.hjpark625.site/images/5a0a0776-b36a-425b-a6bd-ae840aecd5db.jpeg",
+  // ""
 
-  //   &.fourth {
-  //     background: url('/last-photo.jpeg') no-repeat;
-  //     background-size: cover;
-  //     background-position: center center;
-  //   }
+  &.first {
+    position: relative;
+    background: url('https://wedding-photos.hjpark625.site/7f7e44b8-224b-4eef-a7bb-898c80b76a4b.jpeg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    .title-section {
+      position: absolute;
+      top: 18px;
+      max-width: min-content;
+      left: 0;
+      text-align: center;
+    }
+
+    .image-upload-button {
+      position: absolute;
+      top: 20%;
+      right: 30px;
+      padding: 10px 20px;
+      background-color: transparent;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+
+    .image-upload-input {
+      display: none; // Hide the default file input
+    }
+
+    @media screen and (max-width: 768px) {
+      .title-section {
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .image-upload-button {
+        // top: none;
+        top: initial;
+        bottom: 24px;
+        right: 30px;
+        background-color: #f0f0f0;
+      }
+    }
+  }
+
+  &.fourth {
+    background: url('https://wedding-photos.hjpark625.site/72d06a80-4c0d-46ef-829a-9e0033a1e582.jpeg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
 
   &:not(:last-child) {
     border-bottom: 1px solid #ccc;
   }
-}
-
-.image-upload-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-}
-
-.image-upload-input {
-  display: none; // Hide the default file input
 }
