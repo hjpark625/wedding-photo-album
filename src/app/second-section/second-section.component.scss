@@ -1,0 +1,142 @@
+.section {
+  display: flex;
+  justify-content: space-between;
+  height: 100dvh;
+  width: 100%;
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+
+  &.second {
+    background-color: #d7d3d5;
+
+    .left-side,
+    .right-side,
+    .text-box {
+      box-sizing: border-box;
+    }
+
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 40%;
+      padding: 20px;
+      gap: 16px;
+
+      .main-image-box {
+        padding: 6px;
+        border: 1px solid #000;
+      }
+      .greeting-title {
+        text-align: left;
+      }
+    }
+    .right-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 60%;
+      padding: 20px;
+
+      .sub-image-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        width: 100%;
+
+        .sub-image-box {
+          padding: 6px;
+          border: 1px solid #000;
+        }
+      }
+    }
+
+    .text-box {
+      width: 100%;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .main-image-box {
+      width: 350px;
+      height: 350px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .sub-image-box {
+      width: 340px;
+      height: 255px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      min-height: 100dvh;
+      gap: 32px;
+
+      .left-side,
+      .right-side {
+        flex: none;
+        margin: 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .left-side {
+        width: 100%;
+        padding: 4px 2px;
+        align-items: center;
+        text-align: center;
+        .main-image-box {
+          width: 100%;
+          height: 180px;
+        }
+        .greeting-title {
+          text-align: left;
+          font-size: 1.1rem;
+        }
+      }
+      .right-side {
+        width: 100%;
+        padding: 4px 2px;
+        align-items: center;
+        .sub-image-container {
+          justify-content: center;
+        }
+      }
+      .main-image-box {
+        width: 100%;
+        height: 180px;
+      }
+      .sub-image-box {
+        width: 200px;
+        height: 180px;
+      }
+      .text-box {
+        max-height: 180px;
+        overflow-y: auto;
+        padding-right: 8px;
+        max-width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+}
