@@ -22,7 +22,6 @@ export class FirstSectionComponent {
       files.forEach((file) => {
         formData.append('images', file);
       });
-      //   this.uploadPhotos(formData);
       this.uploadPhotoTrigger.emit(formData);
     }
   }
