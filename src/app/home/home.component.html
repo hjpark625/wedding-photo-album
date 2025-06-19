@@ -1,14 +1,4 @@
-<section class="section first">
-  <button class="image-upload-button" type="button" (click)="onInputTrigger($event)">이미지 첨부하기</button>
-  <input
-    #imageUploadInput
-    class="image-upload-input"
-    type="file"
-    (change)="saveAttachImages($event)"
-    multiple
-    accept="image/*"
-  />
-</section>
+<first-section (uploadPhotoTrigger)="uploadPhotos($event)" />
 <section class="section second">
   <div>second section</div>
 </section>
