@@ -44,11 +44,14 @@ export class HomeComponent implements OnInit {
 
   uploadPhotos(formData: FormData) {
     this.photoRequestService.uploadPhotos(formData, this.csrfToken).subscribe({
-      // TODO: 응답 및 에러에 관련된 핸들링 추가 필요
-      next: (response) => {
-        console.log('Upload successful:', response.imageUrls);
+      next: () => {
+        return window.alert('사진 업로드가 완료되었습니다. 감사합니다.');
       },
       error: (error: HttpErrorResponse) => {
+        if (error.status === 403) {
+          console.error(error);
+          return window.alert('비정상적인 접근입니다. 새로고침 후 다시 시도해주세요.');
+        }
         console.error(error);
       }
     });
