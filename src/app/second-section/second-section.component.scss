@@ -139,14 +139,4 @@
       }
     }
   }
-
-  &.fourth {
-    background: url('https://wedding-photos.hjpark625.site/72d06a80-4c0d-46ef-829a-9e0033a1e582.jpeg') no-repeat;
-    background-size: cover;
-    background-position: center center;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #ccc;
-  }
 }
