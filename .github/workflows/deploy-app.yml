@@ -1,5 +1,8 @@
 name: Deploy Wedding Front App
 
+env:
+  API_SERVER: ${{ vars.API_SERVER }}
+
 on:
   workflow_dispatch:
     inputs:
