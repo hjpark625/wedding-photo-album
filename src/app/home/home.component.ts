@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
   private photoRequestService = inject(PhotoRequestService);
   private authRequestService = inject(AuthRequestService);
 
-  // TODO: CSRF 토큰 저장 및 관리 방식 고민 필요
   private csrfToken = '';
 
   uploadPhotos(formData: FormData) {
