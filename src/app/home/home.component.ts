@@ -7,14 +7,14 @@ import { FirstSectionComponent } from '@/app/first-section/first-section.compone
 import { SecondSectionComponent } from '@/app/second-section/second-section.component';
 
 import type { HttpErrorResponse } from '@angular/common/http';
-import type { OnInit } from '@angular/core';
+import type { OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   imports: [FirstSectionComponent, SecondSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   private photoRequestService = inject(PhotoRequestService);
   private authRequestService = inject(AuthRequestService);
 
@@ -35,6 +35,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  private contextMenuEventHandler(e: MouseEvent) {
+    e.preventDefault();
+    return;
+  }
+
   ngOnInit(): void {
     this.authRequestService.getCsrfToken().subscribe({
       next: (response) => {
@@ -44,5 +49,11 @@ export class HomeComponent implements OnInit {
         console.error('Error fetching CSRF token:', error);
       }
     });
+
+    window.addEventListener('contextmenu', this.contextMenuEventHandler);
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('contextmenu', this.contextMenuEventHandler);
   }
 }
