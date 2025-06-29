@@ -1,5 +1,11 @@
-<first-section (uploadPhotoTrigger)="uploadPhotos($event)" />
+@if (isValidated()) {
+  <first-section (uploadPhotoTrigger)="uploadPhotos($event)" />
 
-<second-section />
+  <second-section />
 
-<section class="section fourth"></section>
+  <section class="section fourth"></section>
+} @else {
+  <div class="validation-message">
+    <p>비정상적인 QR 코드입니다. 관리자에게 문의해주세요.</p>
+  </div>
+}
