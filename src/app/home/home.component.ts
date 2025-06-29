@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { PhotoRequestService } from '@/apis/photo-request.service';
 import { AuthRequestService } from '@/apis/auth-request.service';
@@ -17,8 +18,11 @@ import type { OnDestroy, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit, OnDestroy {
   private photoRequestService = inject(PhotoRequestService);
   private authRequestService = inject(AuthRequestService);
+  private route = inject(ActivatedRoute);
 
   private csrfToken = '';
+
+  readonly isValidated = signal(false);
 
   uploadPhotos(formData: FormData) {
     this.photoRequestService.uploadPhotos(formData, this.csrfToken).subscribe({
@@ -41,13 +45,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authRequestService.getCsrfToken().subscribe({
-      next: (response) => {
-        this.csrfToken = response.csrfToken;
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Error fetching CSRF token:', error);
+    this.route.queryParams.subscribe((params) => {
+      const expires = params['expires'];
+      const sig = params['sig'];
+
+      if (!expires || !sig) {
+        return window.alert('잘못된 접근입니다. 새로고침 후 다시 시도해주세요.');
       }
+
+      this.authRequestService.getQrAccessValidation(expires, sig).subscribe({
+        next: () => {
+          this.isValidated.set(true);
+
+          this.authRequestService.getCsrfToken().subscribe({
+            next: (response) => {
+              this.csrfToken = response.csrfToken;
+            },
+            error: (error: HttpErrorResponse) => {
+              console.error('Error fetching CSRF token:', error);
+            }
+          });
+        },
+        error: (error: HttpErrorResponse) => {
+          if (error.status === 403 || error.status === 401) {
+            return window.alert(error.error.message);
+          }
+        }
+      });
     });
 
     window.addEventListener('contextmenu', this.contextMenuEventHandler);
