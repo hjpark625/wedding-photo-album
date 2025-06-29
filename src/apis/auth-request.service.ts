@@ -15,4 +15,11 @@ export class AuthRequestService {
       withCredentials: true
     });
   }
+
+  getQrAccessValidation(expires: string, sig: string) {
+    return this.http.get<{ message: string }>(`${this.apiUrl}qr-access`, {
+      withCredentials: true,
+      params: { expires, sig }
+    });
+  }
 }
