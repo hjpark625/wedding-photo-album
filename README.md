@@ -1,59 +1,62 @@
-# WeddingPhotoAlbum
+# Wedding Photo Album
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+이 프로젝트는 Angular(버전 19.2.13) 기반으로 한 웨딩 사진 앨범 업로드 웹 애플리케이션입니다.
 
-## Development server
+## 주요 기능
 
-To start a local development server, run:
+- **사진 업로드**: 1회 최대 20장, 150MB 이하 업로드 가능
+- **사용자 인증**: CSRF 토큰을 이용한 인증 처리
+  - 비정상적인 접근에 의해 서비스의 악용을 방지하기 위한 보안 조치
+- **반응형 UI**: 간단한 모바일, 데스크탑 레이아웃만 대응
 
-```bash
-ng serve
+## 기술 스택
+
+![Angular](https://img.shields.io/badge/Angular-900?style=for-the-badge&logo=Angular&logoColor=white)  
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)  
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=Sass&logoColor=white)  
+![PNPM](https://img.shields.io/badge/pnpm-222?style=for-the-badge&logo=pnpm&logoColor=white)
+
+## 폴더 구조
+
+```plaintext
+src/
+  apis/                # API 요청 서비스 및 타입 정의
+    auth-request.service.ts    # CSRF 토큰 인증 api 호출부
+    photo-request.service.ts   # 사진 업로드 및 관리 API 호출부
+    types/             # API 요청 및 응답 타입 정의
+      photo-request.type.ts
+  app/
+    first-section/     # 첫 번째 섹션 컴포넌트
+    second-section/    # 두 번째 섹션 컴포넌트
+    home/              # 첫 번째, 두 번째 섹션 컴포넌트 컨테이너 역할
+    app.component.*    # 루트 컴포넌트
+    app.config.ts      # 앱 설정
+    app.routes.ts      # 라우팅 설정
+  index.html
+  main.ts
+  styles.scss
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 설치 및 실행
 
-## Code scaffolding
+> 이 프로젝트는 Nodejs 22.12.0 이상에서 호환가능합니다.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 환경 변수
 
-```bash
-ng generate component component-name
+```plaintext
+API_SERVER=백엔드 서버 주소
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- 백엔드 레포지토리: https://github.com/hjpark625/wedding-photo-album-server
+
+## 의존성 설치
 
 ```bash
-ng generate --help
+pnpm install
 ```
 
-## Building
-
-To build the project run:
+## 개발환경 실행
 
 ```bash
-ng build
+pnpm start
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
